@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+	
+	<beans:description>
+	Make in memory repo the default, so its used by the monitoring aspect and controllers
+	</beans:description>
+
+	<beans:bean class="solubris.mon4roo.jpa.MonitorMetricInMemoryRepository" id="monitorMetricRepository" />
+	<repositories base-package="solubris.mon4roo.jpa" />
+
+</beans:beans>

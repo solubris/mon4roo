@@ -1,0 +1,38 @@
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-31 04:59:10
+project --topLevelPackage solubris.mon4roo --projectName mon4roo --java 6 --packaging POM
+module create --moduleName mon4roo-core --topLevelPackage solubris.mon4roo.core
+jpa setup --provider HIBERNATE --database MYSQL
+entity jpa --class solubris.mon4roo.core.MonitorMetric --activeRecord false --testAutomatically
+field number --fieldName countStarted --type int
+repository jpa --entity ~.MonitorMetric --interface ~.MonitorMetricRepository
+module focus --moduleName ~
+module create --moduleName mon4roo-mvc --topLevelPackage solubris.mon4roo.mvc
+web mvc setup
+web mvc all --package ~
+web mvc finder all
+selenium test --controller ~.MonitorMetricController
+logging setup --level INFO
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-31 04:59:58
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-31 05:01:47
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-31 05:38:44
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-31 05:38:48
+module focus --moduleName mon4roo-core 
+database properties set --key database.username --value root
+database properties set --key database.password --value root
+database properties set --key database.url --value jdbc:mysql://localhost:3306/mon4roo
+module focus --moduleName ~
+module create --moduleName mon4roo-sample --topLevelPackage solubris.mon4roo.sample
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-31 06:02:05
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-31 06:20:08
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-31 06:31:57
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-31 06:32:01
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-31 06:57:26
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-31 06:57:31
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-31 07:16:21
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-31 07:16:26

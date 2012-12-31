@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show create="false" delete="false" id="ps_solubris_mon4roo_core_MonitorMetric" object="${monitormetric}" path="/monitormetrics" update="false" z="eCrz2iKIAqEsizDpytf5awlLb44=">
+        <field:display field="avgTime" id="s_solubris_mon4roo_core_MonitorMetric_avgTime" object="${monitormetric}" z="2A008EvgDan0SIGRJ436McoXBjI="/>
+        <field:display field="affectedAvgTime" id="s_solubris_mon4roo_core_MonitorMetric_affectedAvgTime" object="${monitormetric}" z="e5MeAZoxlvqMxBzAcxHHiKhwoZI="/>
+        <field:display field="rate" id="s_solubris_mon4roo_core_MonitorMetric_rate" object="${monitormetric}" z="nzkcFC/o7y5QtQmNa5cdaZIO2X0="/>
+        <field:display field="affectedRate" id="s_solubris_mon4roo_core_MonitorMetric_affectedRate" object="${monitormetric}" z="goi8J7vqYBvHY89Y7SdUHjPQVCE="/>
+        <field:display field="totTime" id="s_solubris_mon4roo_core_MonitorMetric_totTime" object="${monitormetric}" z="PvvfmGGgqZvMio7F703DswVrjks="/>
+        <field:display field="minTime" id="s_solubris_mon4roo_core_MonitorMetric_minTime" object="${monitormetric}" z="sUbk0FJNwlIUDYLhpyC3ZhaIId0="/>
+        <field:display field="maxTime" id="s_solubris_mon4roo_core_MonitorMetric_maxTime" object="${monitormetric}" z="rSJMjSG0+nWS1itQ3ByNb6smgKg="/>
+        <field:display field="countStarted" id="s_solubris_mon4roo_core_MonitorMetric_countStarted" object="${monitormetric}" z="FrHSvZHThSHiwkOXjSsJamE0rbE="/>
+        <field:display field="countFinished" id="s_solubris_mon4roo_core_MonitorMetric_countFinished" object="${monitormetric}" z="yH77hBi8tg6zPogF8XEohhApJLQ="/>
+        <field:display field="countAffected" id="s_solubris_mon4roo_core_MonitorMetric_countAffected" object="${monitormetric}" z="ZTb1tAWJAgqc0XvktfDAPgpyOAw="/>
+        <field:display date="true" dateTimePattern="${monitorMetric_firstattempt_date_format}" field="firstAttempt" id="s_solubris_mon4roo_core_MonitorMetric_firstAttempt" object="${monitormetric}" z="C9wEcMuCRnM1+WOAFM+00pVe/HY="/>
+        <field:display date="true" dateTimePattern="${monitorMetric_firstsuccess_date_format}" field="firstSuccess" id="s_solubris_mon4roo_core_MonitorMetric_firstSuccess" object="${monitormetric}" z="YLIg60QLyjgvVMmZv/V0uoa2gFs="/>
+        <field:display date="true" dateTimePattern="${monitorMetric_firstfailure_date_format}" field="firstFailure" id="s_solubris_mon4roo_core_MonitorMetric_firstFailure" object="${monitormetric}" z="3MawP8ChaijTRtb+/eTHh8x6xL0="/>
+        <field:display date="true" dateTimePattern="${monitorMetric_lastattempt_date_format}" field="lastAttempt" id="s_solubris_mon4roo_core_MonitorMetric_lastAttempt" object="${monitormetric}" z="wOx9iPwP8oo1Pit8Ti0dwQH9bGM="/>
+        <field:display date="true" dateTimePattern="${monitorMetric_lastsuccess_date_format}" field="lastSuccess" id="s_solubris_mon4roo_core_MonitorMetric_lastSuccess" object="${monitormetric}" z="LFBjh/i91ertSMrqsexEmkkvJ1g="/>
+        <field:display date="true" dateTimePattern="${monitorMetric_lastfailure_date_format}" field="lastFailure" id="s_solubris_mon4roo_core_MonitorMetric_lastFailure" object="${monitormetric}" z="eqDwv216XCTeB/yV1MrlmBUXulo="/>
+    </page:show>
+</div>

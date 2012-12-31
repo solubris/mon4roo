@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_solubris_mon4roo_core_MonitorMetric" items="${monitormetrics}" z="K0mlZ7A+x0wXnAXTzKsM2G3v6f4=">
+        <table:table data="${monitormetrics}" delete="false" id="l_solubris_mon4roo_core_MonitorMetric" path="/monitormetrics" typeIdFieldName="name" update="false" z="wakNAC63JvXerO5wt3592LPSFl8=">
+            <table:column id="c_solubris_mon4roo_core_MonitorMetric_avgTime" property="avgTime" z="ItKQnF+mKKOiwTBBqXRLW/SbAsE="/>
+            <table:column id="c_solubris_mon4roo_core_MonitorMetric_affectedAvgTime" property="affectedAvgTime" z="+DXxzSdlJA1zCrr5MH570vNxN98="/>
+            <table:column id="c_solubris_mon4roo_core_MonitorMetric_rate" property="rate" z="ublUzT5Ipn7HdnIsMiaII4xUPGE="/>
+            <table:column id="c_solubris_mon4roo_core_MonitorMetric_affectedRate" property="affectedRate" z="2xh62996Qc7dG6JWkeN4BoDO6wM="/>
+            <table:column id="c_solubris_mon4roo_core_MonitorMetric_totTime" property="totTime" z="BmJMfh0lSoBKfDZ54OPMQXrCqgY="/>
+            <table:column id="c_solubris_mon4roo_core_MonitorMetric_minTime" property="minTime" z="EPQbnqt7JppBwFNd/CEe2WK93s0="/>
+        </table:table>
+    </page:list>
+</div>
