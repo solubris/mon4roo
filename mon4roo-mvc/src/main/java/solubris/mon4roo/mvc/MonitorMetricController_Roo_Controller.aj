@@ -4,19 +4,14 @@
 package solubris.mon4roo.mvc;
 
 import org.joda.time.format.DateTimeFormat;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import solubris.mon4roo.jpa.MonitorMetricRepository;
 import solubris.mon4roo.mvc.MonitorMetricController;
 
 privileged aspect MonitorMetricController_Roo_Controller {
-    
-    @Autowired
-    MonitorMetricRepository MonitorMetricController.monitorMetricRepository;
     
     @RequestMapping(value = "/{name}", produces = "text/html")
     public String MonitorMetricController.show(@PathVariable("name") String name, Model uiModel) {

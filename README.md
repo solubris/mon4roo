@@ -59,6 +59,8 @@ classpath:META-INF/spring/mon4roo
 Should look like this after addition:
     <bean class="org.springframework.context.support.ReloadableResourceBundleMessageSource" id="messageSource" p:basenames="WEB-INF/i18n/messages,WEB-INF/i18n/application,classpath:META-INF/spring/mon4roo" p:fallbackToSystemLocale="false" p:cacheSeconds="0"/>
 
+Add mvc package to component scan in webmvc-config.xml
+	,solubris.mon4roo.mvc
 
 Add this to persistence.xml:
 
