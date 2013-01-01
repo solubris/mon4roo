@@ -219,17 +219,17 @@
 	</dependencies>
 	<build>
 		<plugins>
-		<!-- 
-		Package war as jar
-		http://communitygrids.blogspot.co.uk/2007/11/maven-making-war-and-jar-at-same-time.html
-		 -->
+			<!--
+				Package war as jar
+				http://communitygrids.blogspot.co.uk/2007/11/maven-making-war-and-jar-at-same-time.html
+			-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.4</version>
 				<executions>
 					<execution>
-						<id>make-a-jar</id>
+						<id>jar</id>
 						<phase>compile</phase>
 						<goals>
 							<goal>jar</goal>
@@ -324,6 +324,40 @@
 				<configuration>
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
+				<executions>
+					<execution>
+					<!-- Copy jspx and views so they are included in the jar -->
+						<id>copy-views</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.outputDirectory}/META-INF/resources/WEB-INF/views/monitormetrics/</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/webapp/WEB-INF/views/monitormetrics</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+					<!-- Copy i18n properties so they are included in the jar -->
+						<id>copy-props</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.outputDirectory}/META-INF/mon4roo</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/webapp/WEB-INF/i18n</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
