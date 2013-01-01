@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import solubris.mon4roo.core.MonitorMetricDataOnDemand;
 import solubris.mon4roo.core.MonitorMetricIntegrationTest;
+import solubris.mon4roo.core.MonitorMetricService;
 import solubris.mon4roo.jpa.MonitorMetricRepository;
 
 privileged aspect MonitorMetricIntegrationTest_Roo_IntegrationTest {
@@ -27,58 +28,61 @@ privileged aspect MonitorMetricIntegrationTest_Roo_IntegrationTest {
     MonitorMetricDataOnDemand MonitorMetricIntegrationTest.dod;
     
     @Autowired
+    MonitorMetricService MonitorMetricIntegrationTest.monitorMetricService;
+    
+    @Autowired
     MonitorMetricRepository MonitorMetricIntegrationTest.monitorMetricRepository;
     
     @Test
-    public void MonitorMetricIntegrationTest.testCount() {
+    public void MonitorMetricIntegrationTest.testCountAllMonitorMetrics() {
         Assert.assertNotNull("Data on demand for 'MonitorMetric' failed to initialize correctly", dod.getRandomMonitorMetric());
-        long count = monitorMetricRepository.count();
+        long count = monitorMetricService.countAllMonitorMetrics();
         Assert.assertTrue("Counter for 'MonitorMetric' incorrectly reported there were no entries", count > 0);
     }
     
     @Test
-    public void MonitorMetricIntegrationTest.testFind() {
+    public void MonitorMetricIntegrationTest.testFindMonitorMetric() {
         MonitorMetric obj = dod.getRandomMonitorMetric();
         Assert.assertNotNull("Data on demand for 'MonitorMetric' failed to initialize correctly", obj);
         String id = obj.getName();
         Assert.assertNotNull("Data on demand for 'MonitorMetric' failed to provide an identifier", id);
-        obj = monitorMetricRepository.findOne(id);
+        obj = monitorMetricService.findMonitorMetric(id);
         Assert.assertNotNull("Find method for 'MonitorMetric' illegally returned null for id '" + id + "'", obj);
         Assert.assertEquals("Find method for 'MonitorMetric' returned the incorrect identifier", id, obj.getName());
     }
     
     @Test
-    public void MonitorMetricIntegrationTest.testFindAll() {
+    public void MonitorMetricIntegrationTest.testFindAllMonitorMetrics() {
         Assert.assertNotNull("Data on demand for 'MonitorMetric' failed to initialize correctly", dod.getRandomMonitorMetric());
-        long count = monitorMetricRepository.count();
+        long count = monitorMetricService.countAllMonitorMetrics();
         Assert.assertTrue("Too expensive to perform a find all test for 'MonitorMetric', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        List<MonitorMetric> result = monitorMetricRepository.findAll();
+        List<MonitorMetric> result = monitorMetricService.findAllMonitorMetrics();
         Assert.assertNotNull("Find all method for 'MonitorMetric' illegally returned null", result);
         Assert.assertTrue("Find all method for 'MonitorMetric' failed to return any data", result.size() > 0);
     }
     
     @Test
-    public void MonitorMetricIntegrationTest.testFindEntries() {
+    public void MonitorMetricIntegrationTest.testFindMonitorMetricEntries() {
         Assert.assertNotNull("Data on demand for 'MonitorMetric' failed to initialize correctly", dod.getRandomMonitorMetric());
-        long count = monitorMetricRepository.count();
+        long count = monitorMetricService.countAllMonitorMetrics();
         if (count > 20) count = 20;
         int firstResult = 0;
         int maxResults = (int) count;
-        List<MonitorMetric> result = monitorMetricRepository.findAll(new org.springframework.data.domain.PageRequest(firstResult / maxResults, maxResults)).getContent();
+        List<MonitorMetric> result = monitorMetricService.findMonitorMetricEntries(firstResult, maxResults);
         Assert.assertNotNull("Find entries method for 'MonitorMetric' illegally returned null", result);
         Assert.assertEquals("Find entries method for 'MonitorMetric' returned an incorrect number of entries", count, result.size());
     }
     
     @Test
-    public void MonitorMetricIntegrationTest.testDelete() {
+    public void MonitorMetricIntegrationTest.testDeleteMonitorMetric() {
         MonitorMetric obj = dod.getRandomMonitorMetric();
         Assert.assertNotNull("Data on demand for 'MonitorMetric' failed to initialize correctly", obj);
         String id = obj.getName();
         Assert.assertNotNull("Data on demand for 'MonitorMetric' failed to provide an identifier", id);
-        obj = monitorMetricRepository.findOne(id);
-        monitorMetricRepository.delete(obj);
+        obj = monitorMetricService.findMonitorMetric(id);
+        monitorMetricService.deleteMonitorMetric(obj);
         monitorMetricRepository.flush();
-        Assert.assertNull("Failed to remove 'MonitorMetric' with identifier '" + id + "'", monitorMetricRepository.findOne(id));
+        Assert.assertNull("Failed to remove 'MonitorMetric' with identifier '" + id + "'", monitorMetricService.findMonitorMetric(id));
     }
     
 }

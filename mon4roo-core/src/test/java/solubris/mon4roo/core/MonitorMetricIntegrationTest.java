@@ -10,14 +10,14 @@ public class MonitorMetricIntegrationTest {
     @Test
     public void testMarkerMethod() {
     }
-
-	@Test
-    public void testSave() {
+    
+    @Test
+    public void testSaveMonitorMetric() {
         Assert.assertNotNull("Data on demand for 'MonitorMetric' failed to initialize correctly", dod.getRandomMonitorMetric());
         MonitorMetric obj = dod.getNewTransientMonitorMetric(Integer.MAX_VALUE);
         Assert.assertNotNull("Data on demand for 'MonitorMetric' failed to provide a new transient entity", obj);
 //        Assert.assertNull("Expected 'MonitorMetric' identifier to be null", obj.getName());
-        monitorMetricRepository.save(obj);
+        monitorMetricService.saveMonitorMetric(obj);
         monitorMetricRepository.flush();
         Assert.assertNotNull("Expected 'MonitorMetric' identifier to no longer be null", obj.getName());
     }

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
 import solubris.mon4roo.core.MonitorMetric;
-import solubris.mon4roo.jpa.MonitorMetricRepository;
+import solubris.mon4roo.core.MonitorMetricService;
 import solubris.mon4roo.mvc.ApplicationConversionServiceFactoryBean;
 
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
@@ -16,7 +16,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
     
     @Autowired
-    MonitorMetricRepository ApplicationConversionServiceFactoryBean.monitorMetricRepository;
+    MonitorMetricService ApplicationConversionServiceFactoryBean.monitorMetricService;
     
     public Converter<MonitorMetric, String> ApplicationConversionServiceFactoryBean.getMonitorMetricToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<solubris.mon4roo.core.MonitorMetric, java.lang.String>() {
@@ -29,7 +29,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<String, MonitorMetric> ApplicationConversionServiceFactoryBean.getIdToMonitorMetricConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.String, solubris.mon4roo.core.MonitorMetric>() {
             public solubris.mon4roo.core.MonitorMetric convert(java.lang.String id) {
-                return monitorMetricRepository.findOne(id);
+                return monitorMetricService.findMonitorMetric(id);
             }
         };
     }

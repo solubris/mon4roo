@@ -4,19 +4,24 @@
 package solubris.mon4roo.mvc;
 
 import org.joda.time.format.DateTimeFormat;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import solubris.mon4roo.core.MonitorMetricService;
 import solubris.mon4roo.mvc.MonitorMetricController;
 
 privileged aspect MonitorMetricController_Roo_Controller {
     
+    @Autowired
+    MonitorMetricService MonitorMetricController.monitorMetricService;
+    
     @RequestMapping(value = "/{name}", produces = "text/html")
     public String MonitorMetricController.show(@PathVariable("name") String name, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("monitormetric", monitorMetricRepository.findOne(name));
+        uiModel.addAttribute("monitormetric", monitorMetricService.findMonitorMetric(name));
         uiModel.addAttribute("itemId", name);
         return "monitormetrics/show";
     }
@@ -26,11 +31,11 @@ privileged aspect MonitorMetricController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("monitormetrics", monitorMetricRepository.findAll(new org.springframework.data.domain.PageRequest(firstResult / sizeNo, sizeNo)).getContent());
-            float nrOfPages = (float) monitorMetricRepository.count() / sizeNo;
+            uiModel.addAttribute("monitormetrics", monitorMetricService.findMonitorMetricEntries(firstResult, sizeNo));
+            float nrOfPages = (float) monitorMetricService.countAllMonitorMetrics() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("monitormetrics", monitorMetricRepository.findAll());
+            uiModel.addAttribute("monitormetrics", monitorMetricService.findAllMonitorMetrics());
         }
         addDateTimeFormatPatterns(uiModel);
         return "monitormetrics/list";

@@ -52,3 +52,25 @@ exit
 exit
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-31 22:01:19
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-01-01 07:23:01
+module focus --moduleName mon4roo-core
+service --interface ~.MonitorMetricService --entity ~.MonitorMetric
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-01-01 07:37:30
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-01-01 07:37:34
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-01-01 07:40:06
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-01-01 07:40:09
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-01-01 07:41:32
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-01-01 07:41:36
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-01-01 07:45:52
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-01-01 07:45:56
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-01-01 08:18:36
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-01-01 08:18:40
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-01-01 08:18:48
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2013-01-01 08:53:43
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2013-01-01 08:53:52

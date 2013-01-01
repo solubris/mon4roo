@@ -32,8 +32,7 @@ public aspect MonitoringAspect {
 	private static final Logger logger = LoggerFactory.getLogger(MonitoringAspect.class);
 
 	@Autowired
-	@Qualifier("MonitorMetricInMemoryRepository")
-	MonitorMetricRepository monitorMetricRepository;
+	MonitorMetricService monitorMetricService;
 
 	pointcut methodToMonitor(Monitor monitorAnnotation) : execution(@Monitor(enabled=true) * *(..)) && @annotation(monitorAnnotation);
 
@@ -104,24 +103,24 @@ public aspect MonitoringAspect {
 	 * @param name
 	 */
 	private void startMonitorMetric(String name) {
-		MonitorMetric metric = monitorMetricRepository.findOne(name);
+		MonitorMetric metric = monitorMetricService.findMonitorMetric(name);
 		Date now = new Date();
 		if (metric != null) {
 			metric.setCountStarted(metric.getCountStarted() + 1);
 			metric.setLastAttempt(now);
-			monitorMetricRepository.save(metric);
+			monitorMetricService.saveMonitorMetric(metric);
 		} else {
 			metric = new MonitorMetric();
 			metric.setCountStarted(metric.getCountStarted() + 1);
 			metric.setName(name);
 			metric.setFirstAttempt(now);
 			metric.setLastAttempt(now);
-			monitorMetricRepository.save(metric);
+			monitorMetricService.saveMonitorMetric(metric);
 		}
 	}
 
 	private void stopMonitorMetric(String name, StopWatch stopWatch, int affectedCount) {
-		MonitorMetric metric = monitorMetricRepository.findOne(name);
+		MonitorMetric metric = monitorMetricService.findMonitorMetric(name);
 		metric.setCountFinished(metric.getCountFinished() + 1);
 		metric.setTotTime(metric.getTotTime() + stopWatch.getLastTaskTimeMillis());
 		Date now = new Date();
@@ -137,7 +136,7 @@ public aspect MonitoringAspect {
 		if (metric.getMaxTime() <= stopWatch.getLastTaskTimeMillis()) {
 			metric.setMaxTime(stopWatch.getLastTaskTimeMillis());
 		}
-		monitorMetricRepository.save(metric);
+		monitorMetricService.saveMonitorMetric(metric);
 
 		logger.debug("monitor aspect {} {}", name, stopWatch.getLastTaskTimeMillis());
 	}

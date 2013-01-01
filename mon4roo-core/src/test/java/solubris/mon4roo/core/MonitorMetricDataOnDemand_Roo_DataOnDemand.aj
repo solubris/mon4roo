@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import solubris.mon4roo.core.MonitorMetric;
 import solubris.mon4roo.core.MonitorMetricDataOnDemand;
+import solubris.mon4roo.core.MonitorMetricService;
 import solubris.mon4roo.jpa.MonitorMetricRepository;
 
 privileged aspect MonitorMetricDataOnDemand_Roo_DataOnDemand {
@@ -26,6 +27,9 @@ privileged aspect MonitorMetricDataOnDemand_Roo_DataOnDemand {
     private Random MonitorMetricDataOnDemand.rnd = new SecureRandom();
     
     private List<MonitorMetric> MonitorMetricDataOnDemand.data;
+    
+    @Autowired
+    MonitorMetricService MonitorMetricDataOnDemand.monitorMetricService;
     
     @Autowired
     MonitorMetricRepository MonitorMetricDataOnDemand.monitorMetricRepository;
@@ -120,14 +124,14 @@ privileged aspect MonitorMetricDataOnDemand_Roo_DataOnDemand {
         }
         MonitorMetric obj = data.get(index);
         String id = obj.getName();
-        return monitorMetricRepository.findOne(id);
+        return monitorMetricService.findMonitorMetric(id);
     }
     
     public MonitorMetric MonitorMetricDataOnDemand.getRandomMonitorMetric() {
         init();
         MonitorMetric obj = data.get(rnd.nextInt(data.size()));
         String id = obj.getName();
-        return monitorMetricRepository.findOne(id);
+        return monitorMetricService.findMonitorMetric(id);
     }
     
     public boolean MonitorMetricDataOnDemand.modifyMonitorMetric(MonitorMetric obj) {
@@ -137,7 +141,7 @@ privileged aspect MonitorMetricDataOnDemand_Roo_DataOnDemand {
     public void MonitorMetricDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = monitorMetricRepository.findAll(new org.springframework.data.domain.PageRequest(from / to, to)).getContent();
+        data = monitorMetricService.findMonitorMetricEntries(from, to);
         if (data == null) {
             throw new IllegalStateException("Find entries implementation for 'MonitorMetric' illegally returned null");
         }
@@ -149,7 +153,7 @@ privileged aspect MonitorMetricDataOnDemand_Roo_DataOnDemand {
         for (int i = 0; i < 10; i++) {
             MonitorMetric obj = getNewTransientMonitorMetric(i);
             try {
-                monitorMetricRepository.save(obj);
+                monitorMetricService.saveMonitorMetric(obj);
             } catch (ConstraintViolationException e) {
                 StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {
