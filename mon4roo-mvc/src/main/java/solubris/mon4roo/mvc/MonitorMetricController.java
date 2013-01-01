@@ -9,6 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import solubris.mon4roo.core.MonitorMetric;
 import solubris.mon4roo.jpa.MonitorMetricRepository;
 
+/**
+ * Controller for @MonitorMetric entities
+ * 
+ * Override the monitorMetricRepository to use an in memory repo: @MonitorMetricInMemoryRepository
+ * 
+ * @author walterst
+ */
 @RequestMapping("/monitormetrics")
 @Controller
 @RooWebScaffold(path = "monitormetrics", formBackingObject = MonitorMetric.class, create = false, delete = false, update = false)
