@@ -36,13 +36,14 @@ Add library to aspectj compiler plugin:
 Add annotation to methods to monitor:
 
 import solubris.mon4roo.core.Monitor;
-...
+    ...
 	@Monitor
 	...
 						
 copy views from mon4roo-mvc into your webapp:
-mon4roo-mvc/src/main/webapp/WEB-INF/views/monitormetrics/**
-dont need to have controller in project
+    mon4roo-mvc/src/main/webapp/WEB-INF/views/monitormetrics/**
+
+If you are using tomcat7, dont need to do this as the views are included in the mvc jar
  						
 add to menu.jspx
 
@@ -54,10 +55,7 @@ add to menu.jspx
 Add label resource to message source:
 
 webmvc-config.xml - ReloadableResourceBundleMessageSource
-classpath:META-INF/spring/mon4roo
-
-Should look like this after addition:
-    <bean class="org.springframework.context.support.ReloadableResourceBundleMessageSource" id="messageSource" p:basenames="WEB-INF/i18n/messages,WEB-INF/i18n/application,classpath:META-INF/spring/mon4roo" p:fallbackToSystemLocale="false" p:cacheSeconds="0"/>
+    <bean class="org.springframework.context.support.ReloadableResourceBundleMessageSource" id="messageSourceMon4roo" p:basenames="classpath:META-INF/mon4roo/application" p:fallbackToSystemLocale="false" p:cacheSeconds="0"/>
 
 Add mvc package to component scan in webmvc-config.xml
 	,solubris.mon4roo.mvc
