@@ -51,6 +51,17 @@ add to menu.jspx
             <menu:item id="i_monitormetric_list" messageCode="global_menu_list" url="/monitormetrics?page=1&amp;size=${empty param.size ? 10 : param.size}"/>
         </menu:category>
 
+Add the following to your webmvc-config.xml
+
+	<import resource="classpath:META-INF/spring/webmvc-mon4roo.xml"/>
+
+This does two things:
+- adds property resource for mon4roo to the ReloadableResourceBundleMessageSource
+- adds component scan for the mon4roo controllers
+
+
+
+
 
 Add label resource to message source:
 
